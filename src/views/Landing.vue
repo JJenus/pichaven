@@ -6,6 +6,7 @@
 	import Features from "../components/product/Features.vue";
 	import About from "../components/product/About.vue";
 	import Display from "../components/product/Display.vue";
+	import AuthModal from "../components/AuthModal.vue";
 
 	const env = import.meta.env;
 
@@ -69,6 +70,7 @@
 </script>
 
 <template>
+	<AuthModal />
 	<Navbar />
 	<main>
 		<div class="section-header bg-primary-app pb-0">
@@ -146,13 +148,15 @@
 							</li>
 						</ul>
 						<div class="text-center mt-4">
-							<a
-								href="#"
-								target="_blank"
+							<button
+								type="button"
 								class="btn btn-tertiary rounded-pill px-4"
+								data-bs-toggle="modal"
+								data-bs-target="#authModal"
+								@click="signIn = false"
 							>
 								Sign up
-							</a>
+							</button>
 						</div>
 					</div>
 				</div>

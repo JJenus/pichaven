@@ -64,9 +64,15 @@
 					</ul>
 				</div>
 				<div class="d-flex align-items-center">
-					<a href="#" target="_blank" class="btn btn-tertiary">
-						<i class="fa-solid fa-right-to-bracket me-2"></i> Login
-					</a>
+					<button
+						data-bs-toggle="modal"
+						data-bs-target="#authModal"
+						@click="signIn = true"
+						class="btn btn-tertiary"
+					>
+						<i class="fa-solid fa-right-to-bracket me-2"></i>
+						Sign In
+					</button>
 					<button
 						class="navbar-toggler ms-2"
 						type="button"
