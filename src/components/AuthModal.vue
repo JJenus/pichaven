@@ -2,6 +2,7 @@
 	import { inject, onMounted, ref } from "vue";
 	import axios from "axios";
 	import { user } from "../stores/user";
+	import { alert } from "../stores/utility";
 
 	const env = import.meta.env;
 
@@ -31,6 +32,7 @@
 			!form.value.cPassword
 		) {
 			regError.value = "Please fill form correctly";
+			alert.error(regError.value);
 			return;
 		}
 
@@ -38,6 +40,7 @@
 
 		if (form.value.password !== form.value.cPassword) {
 			regError.value = "Passwords don't match";
+			alert.error(regError.value);
 			return;
 		}
 
@@ -62,13 +65,16 @@
 				console.log(response.data);
 				if (response.data.error) {
 					regError.value = response.data.error;
+					alert.error(regError.value);
 				} else {
 					user.login(response.data);
+					alert.success("Signing you in. Please wait.");
 					window.location.href = "/app";
 				}
 			})
 			.catch(function (error) {
 				console.log(error);
+				alert.error("Failed to login");
 			})
 			.finally(() => {
 				loadingReg.value = false;
@@ -81,6 +87,7 @@
 		}
 		if (!form.value.email || !form.value.password) {
 			loginError.value = "Please fill form correctly";
+			alert.error(loginError.value);
 			return;
 		}
 
@@ -106,8 +113,10 @@
 				console.log(response.data);
 				if (response.data.error) {
 					loginError.value = response.data.error;
+					alert.error(loginError.value);
 				} else {
 					user.login(response.data);
+					alert.success("Authorized");
 					window.location.href = "/app";
 				}
 			})
@@ -131,7 +140,10 @@
 		aria-labelledby="authModal"
 		aria-hidden="true"
 	>
-		<div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down" role="document">
+		<div
+			class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down"
+			role="document"
+		>
 			<div class="modal-content rounded">
 				<div class="modal-body p-0">
 					<div class="card border-gray-300 p-3 px-md-4">
@@ -162,7 +174,8 @@
 								@submit.prevent="sumitLogin()"
 								v-if="signIn"
 								class="needs-validation mt-4"
-								novalidate >
+								novalidate
+							>
 								<p
 									v-if="loginError != null"
 									class="alert alert-danger p-3 py-1"

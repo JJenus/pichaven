@@ -5,3 +5,7 @@
 <template>
 	<RouterView />
 </template>
+
+<style>
+@import "awesome-notifications/dist/style.css"
+</style>

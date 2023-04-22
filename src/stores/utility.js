@@ -1,6 +1,7 @@
 import { inject, ref } from "vue";
 import swal from "sweetalert";
 import currency from "currency.js";
+import AWN from "awesome-notifications";
 
 function notify(icon, title, message = "") {
 	swal({
@@ -19,15 +20,23 @@ function notify(icon, title, message = "") {
 	});
 }
 
+const options = {
+	position: "top-right",
+};
+
 export const alert = {
-	success(title = "Success", message = "") {
-		notify("success", title, message);
+	success(title = false, message = "") {
+		// notify("success", title, message);
+		if (title) new AWN().success(title);
+		else new AWN(options).success();
 	},
 	error(title, message = "") {
-		notify("error", title, message);
+		// notify("error", title, message);
+		new AWN(options).alert(title);
 	},
 	info(title, message = "") {
-		notify("info", title, message);
+		// notify("info", title, message);
+		new AWN(options).info(title);
 	},
 	verify() {
 		swal({
