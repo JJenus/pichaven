@@ -1,12 +1,12 @@
 <script setup>
+	import { RouterView } from "vue-router";
 	import { onBeforeMount, onMounted, provide, ref } from "vue";
 	import axios from "axios";
 	import { user } from "@/stores/user";
 
-	import { RouterView } from "vue-router";
 	import SideBar from "../components/app/SideBar.vue";
 	import NavBar from "../components/app/NavBar.vue";
-	import Footer from "../components/app/Footer.vue";
+	import Footer from "../components/product/Footer.vue";
 
 	import "../stores/imports.js";
 
@@ -74,24 +74,28 @@
 	}
 
 	onBeforeMount(async () => {
-		mountChat();
+		// mountChat();
 		await loadUser();
 	});
 </script>
 
 <template>
-	<div class="container-scroller">
-		<SideBar></SideBar>
-		<div class="container-fluid page-body-wrapper">
-			<NavBar></NavBar>
-			<div class="main-panel mb-0 position-relative">
-				<RouterView class="vh-min pb-5 mb-5" />
-				<Footer />
+	<NavBar />
+	<main>
+		<!-- PAGE START -->
+		<div class="section section-lg pt-5 pt-md-7 bg-gray-200">
+			<div class="container">
+				<div class="row pt-5 pt-md-0">
+					<div class="col-12 col-lg-4 mb-3 mb-lg-0">
+						<SideBar />
+					</div>
+					<div class="col-12 col-lg-8">
+						<RouterView />
+					</div>
+				</div>
 			</div>
-			<!-- main-panel ends -->
 		</div>
-		<!-- page-body-wrapper ends -->
-	</div>
+	</main>
 </template>
 
 <style scoped>

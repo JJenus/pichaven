@@ -1,0 +1,112 @@
+<script setup>
+	import { inject, ref } from "vue";
+
+	const toggleIcon = ref(false);
+	const user = inject("user");
+
+	function toggleMenu() {
+		toggleIcon.value = !toggleIcon.value;
+		const body = document.querySelector("body");
+		if (toggleIcon.value) {
+			body.classList.add("sidebar-icon-only");
+		} else {
+			body.classList.remove("sidebar-icon-only");
+		}
+	}
+</script>
+
+<template>
+	<header class="header-global">
+		<nav
+			id="navbar-main"
+			aria-label="Primary navigation"
+			class="navbar navbar-main navbar-expand-lg navbar-theme-primary headroom navbar-light"
+		>
+			<div class="container position-relative">
+				<a
+					class="navbar-brand me-lg-5"
+					href="https://demo.themesberg.com/pixel-pro/v5/index.html"
+					><img
+						class="navbar-brand-dark"
+						src="/assets/img/brand/light.svg"
+						alt="Logo light" />
+					<img
+						class="navbar-brand-light"
+						src="/assets/img/brand/dark.svg"
+						alt="Logo dark"
+				/></a>
+				<div
+					class="navbar-collapse collapse me-auto"
+					id="navbar_global"
+				>
+					<div class="navbar-collapse-header">
+						<div class="row">
+							<div class="col-6 collapse-brand">
+								<a
+									href="https://demo.themesberg.com/pixel-pro/v5/index.html"
+									><img
+										src="/assets/img/brand/dark.svg"
+										alt="Themesberg logo"
+								/></a>
+							</div>
+							<div class="col-6 collapse-close">
+								<a
+									href="#navbar_global"
+									class="fas fa-times"
+									data-bs-toggle="collapse"
+									data-bs-target="#navbar_global"
+									aria-controls="navbar_global"
+									aria-expanded="false"
+									title="close"
+									aria-label="Toggle navigation"
+								></a>
+							</div>
+						</div>
+					</div>
+					<ul
+						class="navbar-nav navbar-nav-hover align-items-lg-center"
+					>
+						<li class="nav-item dropdown">
+							<a href="#" class="nav-link">Home</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a href="#" class="nav-link">Features</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a href="#" class="nav-link">About</a>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link active">Contact</a>
+						</li>
+					</ul>
+				</div>
+				<div class="d-flex align-items-center">
+					<button
+						data-bs-toggle="modal"
+						data-bs-target="#authModal"
+						@click="signIn = true"
+						class="btn btn-tertiary"
+					>
+						<i class="fa-solid fa-right-to-bracket me-2"></i>
+						Sign In
+					</button>
+					<button
+						class="navbar-toggler ms-2"
+						type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#navbar_global"
+						aria-controls="navbar_global"
+						aria-expanded="false"
+						aria-label="Toggle navigation"
+					>
+						<span class="navbar-toggler-icon"></span>
+					</button>
+				</div>
+			</div>
+		</nav>
+	</header>
+</template>
+
+<!-- <style scoped>
+	@import url("@/assets/css/imports.css");
+</style> -->
