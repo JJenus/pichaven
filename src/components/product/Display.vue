@@ -1,7 +1,7 @@
 <template>
 	<div class="rainbow bg-primary-app">
 		<img
-			src="/assets/img/green-logo.png"
+			src="/assets/img/logo.png"
 			class="img-auto"
 			alt="Logo image"
 		/>
@@ -32,8 +32,8 @@
 		border: var(--border-size) dotted transparent;
 		background-image: linear-gradient(
 				to right,
-				rgb(255 255 255 / var(--opacity)),
-				rgb(255 255 255 / var(--opacity))
+				rgb(235 244 246 / var(--opacity)),
+				rgb(235 244 246 / var(--opacity))
 			),
 			conic-gradient(
 				from var(--angle),

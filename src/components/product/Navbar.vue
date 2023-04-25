@@ -1,3 +1,4 @@
+<script></script>
 <template>
 	<header class="header-global">
 		<nav
@@ -6,18 +7,20 @@
 			class="navbar navbar-main navbar-expand-lg navbar-theme-primary headroom navbar-light"
 		>
 			<div class="container position-relative">
-				<a
-					class="navbar-brand me-lg-5"
-					href="https://demo.themesberg.com/pixel-pro/v5/index.html"
-					><img
-						class="navbar-brand-dark"
-						src="/assets/img/brand/light.svg"
-						alt="Logo light" />
+				<a class="navbar-brand me-lg-5" href="/">
 					<img
-						class="navbar-brand-light"
-						src="/assets/img/brand/dark.svg"
+						style="width: 52px; height: 50px"
+						class="navbar-brand-dark shadow bg-primary-app p-1 rounded-circle border-white"
+						src="/assets/img/logo.png"
+						alt="Logo light"
+					/>
+					<img
+						style="width: 52px; height: 50px"
+						class="navbar-brand-light rounded-circle"
+						src="/assets/img/logo.png"
 						alt="Logo dark"
-				/></a>
+					/>
+				</a>
 				<div
 					class="navbar-collapse collapse me-auto"
 					id="navbar_global"
@@ -25,8 +28,7 @@
 					<div class="navbar-collapse-header">
 						<div class="row">
 							<div class="col-6 collapse-brand">
-								<a
-									href="https://demo.themesberg.com/pixel-pro/v5/index.html"
+								<a role="button"
 									><img
 										src="/assets/img/brand/dark.svg"
 										alt="Themesberg logo"

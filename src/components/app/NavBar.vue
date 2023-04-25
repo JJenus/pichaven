@@ -4,6 +4,8 @@
 	const toggleIcon = ref(false);
 	const user = inject("user");
 
+	const env = import.meta.env;
+
 	function toggleMenu() {
 		toggleIcon.value = !toggleIcon.value;
 		const body = document.querySelector("body");
@@ -24,17 +26,22 @@
 		>
 			<div class="container position-relative">
 				<a
-					class="navbar-brand me-lg-5"
-					href="https://demo.themesberg.com/pixel-pro/v5/index.html"
-					><img
-						class="navbar-brand-dark"
-						src="/assets/img/brand/light.svg"
-						alt="Logo light" />
+					class="navbar-brand me-lg-5 d-flex align-items-center"
+					href="/"
+				>
 					<img
-						class="navbar-brand-light"
-						src="/assets/img/brand/dark.svg"
+						style="width: 52px; height: 50px"
+						class="navbar-brand-dark shadow bg-primary-app p-1 rounded-circle border-white"
+						src="/assets/img/logo.png"
+						alt="Logo light"
+					/>
+					<img
+						style="width: 52px; height: 50px"
+						class="navbar-brand-light rounded-circle shadow p-1 bgf-dark border-white"
+						src="/assets/img/logo.png"
 						alt="Logo dark"
-				/></a>
+					/>
+				</a>
 				<div
 					class="navbar-collapse collapse me-auto"
 					id="navbar_global"
@@ -63,44 +70,18 @@
 							</div>
 						</div>
 					</div>
-					<ul
-						class="navbar-nav navbar-nav-hover align-items-lg-center"
-					>
-						<li class="nav-item dropdown">
-							<a href="#" class="nav-link">Home</a>
-						</li>
-						<li class="nav-item dropdown">
-							<a href="#" class="nav-link">Features</a>
-						</li>
-						<li class="nav-item dropdown">
-							<a href="#" class="nav-link">About</a>
-						</li>
-						<li class="nav-item">
-							<a href="#" class="nav-link active">Contact</a>
-						</li>
-					</ul>
 				</div>
-				<div class="d-flex align-items-center">
-					<button
-						data-bs-toggle="modal"
-						data-bs-target="#authModal"
-						@click="signIn = true"
-						class="btn btn-tertiary"
+				<div class="d-flex align-items-center d-md-none">
+					<div
+						class="profile-thumbnail dashboard-avatar mx-lg-auto me-3"
 					>
-						<i class="fa-solid fa-right-to-bracket me-2"></i>
-						Sign In
-					</button>
-					<button
-						class="navbar-toggler ms-2"
-						type="button"
-						data-bs-toggle="collapse"
-						data-bs-target="#navbar_global"
-						aria-controls="navbar_global"
-						aria-expanded="false"
-						aria-label="Toggle navigation"
-					>
-						<span class="navbar-toggler-icon"></span>
-					</button>
+						<img
+							width="46"
+							src="/assets/img/team/profile-picture-3.jpg"
+							class="rounded-circle border-white"
+							alt="img"
+						/>
+					</div>
 				</div>
 			</div>
 		</nav>

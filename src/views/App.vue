@@ -8,7 +8,6 @@
 	import NavBar from "../components/app/NavBar.vue";
 	import Footer from "../components/product/Footer.vue";
 
-	import "../stores/imports.js";
 
 	const env = import.meta.env;
 	const sessions = ref([]);
@@ -99,5 +98,5 @@
 </template>
 
 <style scoped>
-	@import url("../assets/css/imports.css");
+	/* @import url("../assets/css/imports.css"); */
 </style>

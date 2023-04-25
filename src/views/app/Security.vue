@@ -109,8 +109,3 @@
 		</form>
 	</div>
 </template>
-
-
-<style scoped>
-	@import url("@/assets/css/imports.css");
-</style>

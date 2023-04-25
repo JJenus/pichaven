@@ -1,10 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Landing from "../views/Landing.vue";
-// import AppView from "../views/App.vue";
-// import Picks from "../views/app/Picks.vue";
-// import Plans from "../views/app/Plans.vue";
-// import Profile from "../views/app/Profile.vue";
-// import Security from "../views/app/Security.vue";
+import AppView from "../views/App.vue";
+import Picks from "../views/app/Picks.vue";
+import Plans from "../views/app/Plans.vue";
+import Profile from "../views/app/Profile.vue";
+import Security from "../views/app/Security.vue";
+
 // ADMIN
 // import Admin from "../views/Admin.vue";
 // import Dashboard from "../views/admin/Dashboard.vue";
@@ -25,41 +26,41 @@ const router = createRouter({
 			name: "landing",
 			component: Landing,
 		},
-		// {
-		// 	path: "/app",
-		// 	name: "app",
-		// 	component: AppView,
-		// 	redirect: "/app/picks",
-		// 	beforeEnter: (to, from, next) => {
-		// 		if (!user.getUser()) {
-		// 			next({ name: "landing" });
-		// 		} else {
-		// 			next();
-		// 		}
-		// 	},
-		// 	children: [
-		// 		{
-		// 			path: "picks",
-		// 			name: "picks",
-		// 			component: Picks,
-		// 		},
-		// 		{
-		// 			path: "plans",
-		// 			name: "plans",
-		// 			component: Plans,
-		// 		},
-		// 		{
-		// 			path: "profile",
-		// 			name: "profile",
-		// 			component: Profile,
-		// 		},
-		// 		{
-		// 			path: "security",
-		// 			name: "security",
-		// 			component: Security,
-		// 		},
-		// 	],
-		// },
+		{
+			path: "/app",
+			name: "app",
+			component: AppView,
+			redirect: "/app/picks",
+			beforeEnter: (to, from, next) => {
+				if (!user.getUser()) {
+					next({ name: "landing" });
+				} else {
+					next();
+				}
+			},
+			children: [
+				{
+					path: "picks",
+					name: "picks",
+					component: Picks,
+				},
+				{
+					path: "billing",
+					name: "plans",
+					component: Plans,
+				},
+				{
+					path: "settings",
+					name: "profile",
+					component: Profile,
+				},
+				{
+					path: "security",
+					name: "security",
+					component: Security,
+				},
+			],
+		},
 
 		// {
 		// 	path: "/admin",
