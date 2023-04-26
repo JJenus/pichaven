@@ -31,7 +31,7 @@
 						<input
 							type="password"
 							id="cp"
-							class="form-control form-control-lg"
+							class="form-control"
 							v-model="changePass.currentPassword"
 							required
 						/>
@@ -53,7 +53,7 @@
 						<input
 							type="password"
 							id="np"
-							class="form-control form-control-lg"
+							class="form-control"
 							v-model="changePass.newPassword"
 							required
 						/>
@@ -73,7 +73,7 @@
 						<input
 							type="password"
 							id="cnp"
-							class="form-control form-control-lg"
+							class="form-control"
 							v-model="changePass.confirmPassword"
 							required
 						/>

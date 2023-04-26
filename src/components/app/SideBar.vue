@@ -5,6 +5,18 @@
 	const appUser = inject("user");
 	const username = ref("unknown");
 
+	const tempImg =
+		"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkiIFjCOZ-mMeqxd2ryrneiHedE8G9S0AboA&usqp=CAU";
+
+	function getName() {
+		if (appUser.value.name != null) {
+			console.log(appUser.value.name);
+			username.value = appUser.value.name.split(" ")[0];
+		}
+
+		return username.value;
+	}
+
 	const navs = ref([
 		{
 			name: "Picks",
@@ -46,10 +58,7 @@
 	}
 
 	onMounted(() => {
-		if (appUser.name != null) {
-			console.log(appUser.name.split(" ")[0]);
-			username.value = appUser.name.split(" ")[0];
-		}
+		// appUser.value.name = "Crazy"
 	});
 </script>
 
@@ -60,15 +69,22 @@
 		>
 			<div class="profile-thumbnail dashboard-avatar mx-lg-auto me-3">
 				<img
-					src="/assets/img/team/profile-picture-3.jpg"
+					:src="appUser.imgUrl || tempImg"
 					class="card-img-top rounded-circle border-white"
 					alt="img"
 				/>
 			</div>
-			<span class="h5 my-0 my-lg-3 me-3 me-lg-0"
-				>Hi, {{ username }}!</span
+			<span
+				style="font-size: x-small"
+				class="mt-lg-3 mb-2 fw-bold px-3 badge bg-primary"
+				>Welcome</span
 			>
-			<a href="#" class="btn btn-gray-300 btn-xs">
+			<span class="h5 my-0 mb-lg-3 me-3 me-lg-0">{{ getName() }}!</span>
+			<a
+				@click="user.logout()"
+				role="button"
+				class="btn btn-gray-300 btn-xs"
+			>
 				<span class="me-2">
 					<span class="fa-solid fa-sign-out-alt"></span>
 				</span>
@@ -126,6 +142,22 @@
 								class="list-group-item list-group-item-action border-0"
 								>{{ nav.name }}</a
 							>
+							<a
+								class="list-group-item list-group-item-action border-0"
+							>
+								<a
+									@click="user.logout()"
+									role="button"
+									class="btn w-100 btn-gray-300 btn-xs"
+								>
+									<span class="me-2">
+										<span
+											class="fa-solid fa-sign-out-alt"
+										></span>
+									</span>
+									Sign Out
+								</a>
+							</a>
 						</div>
 					</div>
 				</div>

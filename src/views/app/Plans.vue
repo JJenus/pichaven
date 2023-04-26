@@ -44,11 +44,10 @@
 		</div>
 
 		<div class="row align-items-stretch g-3">
-			<div v-for="plan in plans" class="col-md-4">
+			<div v-for="plan in plans" class="col-md-6">
 				<Plan :plan="plan" />
 			</div>
+			
 		</div>
 	</div>
 </template>
-
-

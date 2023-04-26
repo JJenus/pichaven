@@ -1,5 +1,6 @@
 <script setup>
 	import { inject, ref } from "vue";
+	import { user as auth } from "@/stores/user.js";
 
 	const toggleIcon = ref(false);
 	const user = inject("user");
@@ -42,45 +43,51 @@
 						alt="Logo dark"
 					/>
 				</a>
+				
 				<div
-					class="navbar-collapse collapse me-auto"
-					id="navbar_global"
+					class="d-flex flex-wrap align-items-center d-lg-none dropleft"
 				>
-					<div class="navbar-collapse-header">
-						<div class="row">
-							<div class="col-6 collapse-brand">
-								<a
-									href="https://demo.themesberg.com/pixel-pro/v5/index.html"
-									><img
-										src="/assets/img/brand/dark.svg"
-										alt="Themesberg logo"
-								/></a>
-							</div>
-							<div class="col-6 collapse-close">
-								<a
-									href="#navbar_global"
-									class="fas fa-times"
-									data-bs-toggle="collapse"
-									data-bs-target="#navbar_global"
-									aria-controls="navbar_global"
-									aria-expanded="false"
-									title="close"
-									aria-label="Toggle navigation"
-								></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="d-flex align-items-center d-md-none">
 					<div
+						v-if="user.imgUrl"
 						class="profile-thumbnail dashboard-avatar mx-lg-auto me-3"
+						data-bs-toggle="dropdown"
+						aria-haspopup="true"
+						aria-expanded="false"
 					>
 						<img
 							width="46"
-							src="/assets/img/team/profile-picture-3.jpg"
+							:src="user.imgUrl"
 							class="rounded-circle border-white"
 							alt="img"
 						/>
+					</div>
+					<div
+						v-else
+						data-bs-toggle="dropdown"
+						aria-haspopup="true"
+						aria-expanded="false"
+						class="p-2 bg-primary-app d-flex align-items-center rounded-circle"
+					>
+						<i class="fa-solid fa-user-circle fs-1"></i>
+					</div>
+
+					<div class="dropdown-menu w-100">
+						<a
+							class="list-group-item list-group-item-action border-0"
+						>
+							<a
+								@click="auth.logout()"
+								role="button"
+								class="btn w-100 btn-gray-300 btn-xs"
+							>
+								<span class="me-2">
+									<span
+										class="fa-solid fa-sign-out-alt"
+									></span>
+								</span>
+								Sign Out
+							</a>
+						</a>
 					</div>
 				</div>
 			</div>

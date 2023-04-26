@@ -4,7 +4,7 @@
 	import { alert } from "../../stores/utility";
 
 	const env = import.meta.env;
- 
+
 	const props = defineProps({
 		plan: {
 			required: true,
@@ -81,58 +81,51 @@
 </script>
 
 <template>
-	<div class="card mb-3 rounded-3 h-100 shadow">
+	<div class="card shadow position-relative p-4 h-100">
 		<div
-			class="card-body py-3 px-4 h-100 d-flex flex-column justify-content-between"
+			v-if="admin"
+			style="font-size: 0.8rem"
+			class="badge bg-primary text-wihite px-2 rounded-3 position-absolute left-0 top-0 m-2"
 		>
-			<div>
-				<div
-					class="m-0 d-flex align-items-start justify-content-between"
-				>
-					<div>
-						<span>{{ plan.title }}</span>
-					</div>
-					<div class="ms-2">
-						<div
-							v-if="admin"
-							style="font-size: 0.6rem"
-							class="bg-secondary text-white px-2 rounded-3"
-						>
-							{{ plan.type }}
-						</div>
-					</div>
-				</div>
-				<div class="m-0 my-2 d-flex align-items-center">
-					<h3 class="survey-value">${{ plan.amount }}</h3>
+			{{ plan.type }}
+		</div>
+		<a
+			v-if="admin"
+			class="btn btn-icon btn-outline-danger p-1 px-2 border-0 rounded-1 text-dianger position-absolute end-0 top-0 m-2"
+			@click="delet()"
+		>
+			<i class="bi bi-trash3"></i>
+		</a>
+		<div class="card-header border-bottom bg-white text-center">
+			<h3 class="text-primary mb-4">{{ plan.title }}</h3>
+			<span class="d-block">
+				<span class="display-2 text-primary fw-bold">
+					<span class="align-top font-medium">$</span>
+					{{ plan.amount }}
+				</span>
+				<span class="text-gray font-small">/ {{ plan.duration }}</span>
+			</span>
+		</div>
+		<div class="card-body">
+			<p>
+				{{ plan.description }}
+			</p>
 
-					<small class="small fs-sm text-muted"
-						>/{{ plan.duration }}
-					</small>
-				</div>
-			</div>
-			<p>{{ plan.description }}</p>
-			<div
-				class="d-flex justify-content-between align-items-end flot-bar-wrapper"
-			>
-				<div class="mr-2">
-					<p class="text m-0" v-if="!admin">Subscribe</p>
-					<a v-else class="btn fs-5 text-danger" @click="delet()">
-						<i class="bi bi-trash3"></i>
-					</a>
-				</div>
-				<div v-if="!admin">
-					<button
-						:class="loading ? 'disabled' : ''"
-						@click="join()"
-						class="btn btn-primary"
-					>
-						<span
-							v-if="loading"
-							class="spinner-border spinner-border-sm"
-						></span>
-						<span v-else>Start</span>
-					</button>
-				</div>
+			<div class="d-grid">
+				<button
+					:class="loading ? 'disabled' : ''"
+					@click="join()"
+					class="btn btn-outline-primary animate-up-1"
+				>
+					<span
+						v-if="loading"
+						class="spinner-border spinner-border-sm"
+					></span>
+					<span v-else>
+						<span class="fas fa-plus me-1"></span>
+						Subscribe
+					</span>
+				</button>
 			</div>
 		</div>
 	</div>

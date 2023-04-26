@@ -8,11 +8,12 @@
 			<div class="row justify-content-between">
 				<div class="col-md-4">
 					<img
-						class="navbar-brand-dark mb-4"
-						height="35"
-						src="/assets/img/brand/light.svg"
+						style="width: 52px; height: 50px"
+						class="navbar-brand-dark shadow mb-4 bg-priimary-app p-1 rounded-circle border-white"
+						src="/assets/img/logo.png"
 						alt="Logo light"
 					/>
+
 					<p>
 						Evergreenpicks, the sports prediction platform of the
 						future. With our cutting-edge technology, you can make
@@ -32,13 +33,6 @@
 								class="icon-white me-2"
 								aria-label="facebook social link"
 								><span class="fab fa-facebook"></span
-							></a>
-						</li>
-						<li>
-							<a
-								aria-label="github social link"
-								class="icon-white me-2"
-								><span class="fab fa-github"></span
 							></a>
 						</li>
 					</ul>
@@ -88,13 +82,7 @@
 			<hr class="bg-secondary my-3 my-lg-5" />
 			<div class="row">
 				<div class="col mb-md-0">
-					<a href="/" class="d-flex justify-content-center mb-3"
-						><img
-							src="/assets/img/themesberg.svg"
-							height="30"
-							class="me-2"
-							alt="Themesberg Logo"
-						/>
+					<a href="/" class="d-flex justify-content-center mb-3">
 						<p class="text-white fw-bold footer-logo-text m-0">
 							<span class="h5">{{ app }}</span>
 						</p>

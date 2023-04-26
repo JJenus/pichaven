@@ -8,7 +8,9 @@
 
 	const user = inject("user");
 
-	const tempImg = ref("/assets/img/avatar.jpeg");
+	const tempImg = ref(
+		"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkiIFjCOZ-mMeqxd2ryrneiHedE8G9S0AboA&usqp=CAU"
+	);
 	const changed = ref(false);
 
 	const apikey = env.VITE_FSHARE_KEY;
@@ -130,295 +132,249 @@
 </script>
 
 <template>
-	<div class="content-wrapper pb-0">
-		<div class="page-header flex-wrap">
-			<h3 class="mb-4">Profile</h3>
-		</div>
-
-		<div class="">
-			<!-- Team Style 2: Vertical -->
-			<div
-				class="card card-body  mb-4 border-0 text-center position-relative"
-			>
-				<small
-					v-if="user.status === 'verified'"
-					class="position-absolute top-0 end-0 m-3"
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="card card-body bg-white border-gray-300 mb-4">
+				<h2 class="h5 mb-4">General information</h2>
+				<form
+					@submit.prevent="submit($event)"
+					class="needs-validation border-bottom pb-3 pb-lg-4"
+					novalidate
 				>
-					<span class="badge bg-success rounded-pill ms-2"
-						>verified</span
-					>
-				</small>
-				<small
-					v-if="user.status === 'pending'"
-					class="position-absolute top-0 end-0 m-3"
-				>
-					<span class="badge bg-warning rounded-pill ms-2"
-						>pending</span
-					>
-				</small>
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<div class="mb-3">
+								<label for="first_name">Name</label>
+								<input
+									class="form-control"
+									id="first_name"
+									type="text"
+									placeholder="Enter your first name"
+									v-model="user.name"
+									name="name"
+									required
+								/>
+							</div>
+						</div>
+					</div>
 
-				<div class="d-flex justify-content-center mb-2">
-					<img
-						@click="selectImage()"
-						:src="
-							user.imgUrl
-								? util.resizeImg(user.imgUrl, 200)
-								: tempImg
-						"
-						class="rounded-circle"
-						style="
-							max-height: 100px;
-							max-width: 100px;
-							min-height: 100px;
-							min-width: 100px;
-						"
-						:alt="user.name"
-					/>
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<div class="mb-3">
+								<label for="email">Email</label>
+								<input
+									class="form-control"
+									id="email"
+									type="email"
+									name="email"
+									v-model="user.email"
+									required
+								/>
+							</div>
+						</div>
+						<div class="col-md-6 mb-3">
+							<div class="mb-3">
+								<label for="phone">Phone</label>
+								<input
+									class="form-control"
+									id="phone"
+									type="text"
+									v-model="user.phone"
+									required
+								/>
+							</div>
+						</div>
+					</div>
+					<h2 class="h5 my-4">Location</h2>
+					<div class="row">
+						<div class="col-sm-9 mb-3">
+							<div class="mb-3">
+								<label for="address">Address</label>
+								<input
+									class="form-control"
+									id="address"
+									type="text"
+									placeholder="Enter your home address"
+									v-model="user.address"
+									required
+								/>
+							</div>
+						</div>
+						<div class="col-sm-3 mb-3">
+							<div class="mb-3">
+								<label for="zip">ZIP</label>
+								<input
+									class="form-control"
+									id="zip"
+									type="text"
+									v-model="user.zipcode"
+									name="zip"
+									required
+								/>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6 mb-3">
+							<div class="mb-3">
+								<label for="city">City</label>
+								<input
+									class="form-control"
+									id="city"
+									type="text"
+									placeholder="City"
+									v-model="user.city"
+									name="country"
+									required
+								/>
+							</div>
+						</div>
+						<div class="col-sm-6 mb-3">
+							<label for="country2">Country</label>
+							<input
+								class="form-control"
+								id="zip"
+								type="text"
+								v-model="user.country"
+								name="country"
+								required
+							/>
+						</div>
+					</div>
+					<div class="mt-2">
+						<div class="d-flex mb-3">
+							<button
+								type="reset"
+								class="btn d-nonie btn-primary me-3"
+							>
+								Cancel
+							</button>
+							<button type="submit" class="btn btn-secondary-app">
+								<span v-if="!loading"> Save All </span>
+								<span v-else>
+									<span
+										class="spinner-grow spinner-grow-sm"
+										role="status"
+										aria-hidden="true"
+									></span>
+									Please wait...
+								</span>
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="card card-body bg-white border-gray-300 mb-4">
+				<h2 class="h5 mb-4">Select profile photo</h2>
+				<div class="row align-items-center">
+					<div class="col-lg-7">
+						<div class="row">
+							<div class="col-lg-12 mb-2 mb-lg-0">
+								<div
+									class="d-flex align-items-center mb-3 justify-content-start"
+								>
+									<div class="avatar-lg mb-0">
+										<img
+											@click="selectImage()"
+											:src="
+												user.imgUrl
+													? util.resizeImg(
+															user.imgUrl,
+															200
+													  )
+													: tempImg
+											"
+											class="rounded-circle"
+											alt="change avatar"
+										/>
+									</div>
+									<div v-if="changed && !savedImg">
+										<button
+											@click="saveImage()"
+											:class="loading ? 'disabled' : ''"
+											class="btn btn-outline-primary btn-sm ms-2 rounded-pill"
+										>
+											<span v-if="!loading"> Save </span>
+											<span v-else>
+												<span
+													class="spinner-grow spinner-grow-sm"
+													role="status"
+													aria-hidden="true"
+												></span>
+												Please wait...
+											</span>
+										</button>
+									</div>
+								</div>
+							</div>
+							<div class="col-12 mb-3 mb-lg-0">
+								<div class="h6 mb-0 mos-lg-3">Your avatar</div>
+								<small class="text-gray"
+									>JPG, GIF or PNG. Max size of 800K</small
+								>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-5 col-12">
+						<div class="mb-3">
+							<label for="formFile" class="form-label"
+								>Select image from device</label
+							>
+							<input
+								type="file"
+								accept="image/png, image/gif, image/jpeg"
+								@change="newImage($event)"
+								id="select-profile-image"
+								class="d-none"
+							/>
+							<button
+								@click="selectImage()"
+								class="btn btn-outline-primary w-100"
+							>
+								<i class="fa-solid fa-upload me-2"></i>
+								upload
+							</button>
+						</div>
+					</div>
 				</div>
-				<h5 class="fw-medium fs-lg mb-1">
-					{{ user.name }}
-				</h5>
-				<div v-if="user.status === 'new'">
-					<button
-						@click="alert.verify()"
-						class="btn btn-outline-primary btn-sm rounded-pill"
-					>
-						Verify account
-					</button>
-				</div>
-				<p class="fs-sm mb-2">{{ user.email }}</p>
+			</div>
 
-				<div class="d-flex justify-content-center">
+			<div class="card card-body bg-white border-gray-300">
+				<h2 class="h5 text-primary pt-1 pt-lg-3 mt-4">Close account</h2>
+				<p>
+					When you delete your account, your public profile will be
+					deactivated immediately. If you change your mind before the
+					14 days are up, sign in with your email and password, and
+					we’ll send you a link to reactivate your account.
+				</p>
+				<div class="form-check mb-4">
 					<input
-						type="file"
-						accept="image/png, image/gif, image/jpeg"
-						@change="newImage($event)"
-						id="select-profile-image"
-						class="d-none"
+						type="checkbox"
+						id="delete-account"
+						class="form-check-input"
+						v-model="permitDelete"
 					/>
-					<button
-						v-if="changed"
-						@click="revert()"
-						class="btn btn-outline-danger d-none btn-sm rounded-pill"
+					<label for="delete-account" class="form-check-label fs-base"
+						>Yes, I want to delete my account</label
 					>
-						cancel
-					</button>
-
-					<button
-						@click="selectImage()"
-						class="btn btn-outline-primary mx-2 btn-sm rounded-pill"
-					>
-						Upload image
-					</button>
-
-					<button
-						v-if="changed && !savedImg"
-						@click="saveImage()"
-						:class="loading ? 'disabled' : ''"
-						class="btn btn-outline-primary btn-sm rounded-pill"
-					>
-						<span v-if="!loading"> Save </span>
-						<span v-else>
-							<span
-								class="spinner-grow spinner-grow-sm"
-								role="status"
-								aria-hidden="true"
-							></span>
-							Please wait...
-						</span>
-					</button>
 				</div>
-			</div>
-
-			<h1
-				class="h2 pt-xl-1 pb-3 d-flex justify-content-between align-items-end btn-rounded"
-			>
-				<span>Account Details</span>
-			</h1>
-
-			<!-- Basic info -->
-			<h2 class="h5 text-primary mb-4">Basic info</h2>
-			<form
-				@submit.prevent="submit($event)"
-				class="needs-validation border-bottom pb-3 pb-lg-4"
-				novalidate
-			>
-				<div class="row pb-2">
-					<div class="col-sm-12 mb-4">
-						<label for="fn" class="form-label fs-base">Name</label>
-						<input
-							type="text"
-							id="fn"
-							class="form-control form-control-lg"
-							v-model="user.name"
-							name="name"
-							required
-						/>
-						<div class="invalid-feedback">
-							Please enter your first name!
-						</div>
-					</div>
-					<div class="col-sm-6 mb-4">
-						<label for="email" class="form-label fs-base"
-							>Email address</label
-						>
-						<input
-							type="email"
-							id="email"
-							class="form-control form-control-lg"
-							v-model="user.email"
-							required
-						/>
-						<div class="invalid-feedback">
-							Please provide a valid email address!
-						</div>
-					</div>
-					<div class="col-sm-6 mb-4">
-						<label for="phone" class="form-label fs-base"
-							>Phone
-							<small class="text-muted">(optional)</small></label
-						>
-						<input
-							type="text"
-							id="phone"
-							class="form-control form-control-lg"
-							v-model="user.phone"
-							data-format='{"phone": true, "phoneRegionCode": "us"}'
-							placeholder="+1 ___ ___ __"
-						/>
-					</div>
-				</div>
-				<div class="d-flex mb-3 d-none">
-					<button type="reset" class="btn btn-secondary me-3">
-						Cancel
-					</button>
-					<button
-						:class="loading ? 'disabled' : ''"
-						type="submit"
-						class="btn btn-primary"
-					>
-						<span v-if="!loading"> Save changes </span>
-						<span v-else>
-							<span
-								class="spinner-grow spinner-grow-sm"
-								role="status"
-								aria-hidden="true"
-							></span>
-							Please wait...
-						</span>
-					</button>
-				</div>
-				<!-- </form> -->
-
-				<!-- Address -->
-				<h2 class="h5 text-primary pt-1 pt-lg-3 my-4">Address</h2>
-				<!-- <form class="needs-validation border-bottom pb-2 pb-lg-4" novalidate> -->
-				<div class="row pb-2">
-					<div class="col-sm-6 mb-4">
-						<label for="country" class="form-label fs-base"
-							>Country</label
-						>
-						<input
-							type="text"
-							id="country"
-							class="form-control form-control-lg"
-							v-model="user.country"
-							name="country"
-							required
-						/>
-						<div class="invalid-feedback">
-							Please enter your country!
-						</div>
-					</div>
-					<div class="col-sm-6 mb-4">
-						<label for="city" class="form-label fs-base"
-							>City</label
-						>
-						<input
-							type="text"
-							id="country"
-							class="form-control form-control-lg"
-							v-model="user.city"
-							name="country"
-							required
-						/>
-						<div class="invalid-feedback">
-							Please enter your city!
-						</div>
-					</div>
-					<div class="col-sm-6 mb-4">
-						<label for="zip" class="form-label fs-base"
-							>ZIP code</label
-						>
-						<input
-							type="text"
-							id="zip"
-							class="form-control form-control-lg"
-							v-model="user.zipcode"
-							name="zip"
-							required
-						/>
-						<div class="invalid-feedback">
-							Please enter your ZIP code!
-						</div>
-					</div>
-					<div class="col-6 mb-4">
-						<label for="address1" class="form-label fs-base"
-							>Address line</label
-						>
-						<input
-							id="address1"
-							class="form-control form-control-lg"
-							v-model="user.address"
-							required
-						/>
-					</div>
-				</div>
-				<div class="d-flex mb-3">
-					<button type="reset" class="btn d-nonie btn-secondary me-3">
-						Cancel
-					</button>
-					<button type="submit" class="btn btn-secondary">
-						Save changes
-					</button>
-				</div>
-			</form>
-
-			<!-- Delete account -->
-			<h2 class="h5 text-primary pt-1 pt-lg-3 mt-4">Close account</h2>
-			<p>
-				When you delete your account, your public profile will be
-				deactivated immediately. If you change your mind before the 14
-				days are up, sign in with your email and password, and we’ll
-				send you a link to reactivate your account.
-			</p>
-			<div class="form-check mb-4">
-				<input
-					type="checkbox"
-					id="delete-account"
-					class="form-check-input"
-					v-model="permitDelete"
-				/>
-				<label for="delete-account" class="form-check-label fs-base"
-					>Yes, I want to delete my account</label
+				<button
+					:class="!permitDelete || loading ? 'disabled' : ''"
+					@click="closeAccount()"
+					type="button"
+					class="btn btn-danger"
 				>
+					<span v-if="!loading"> Close </span>
+					<span v-else>
+						<span
+							class="spinner-grow spinner-grow-sm"
+							role="status"
+							aria-hidden="true"
+						></span>
+						Processing...
+					</span>
+				</button>
 			</div>
-			<button
-				:class="!permitDelete || loading ? 'disabled' : ''"
-				@click="closeAccount()"
-				type="button"
-				class="btn btn-danger"
-			>
-				<span v-if="!loading"> Close </span>
-				<span v-else>
-					<span
-						class="spinner-grow spinner-grow-sm"
-						role="status"
-						aria-hidden="true"
-					></span>
-					Processing...
-				</span>
-			</button>
 		</div>
 	</div>
 </template>
