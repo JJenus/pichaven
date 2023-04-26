@@ -80,7 +80,7 @@
 			</div>
 		</div>
 		<div
-			class="mt-3 row g-3 row-cols-1 row-cols-md-3 align-items-stretched"
+			class="mt-3 row g-3 row-cols-1 row-cols-md-2 align-items-stretched"
 		>
 			<div v-for="user in users" class="col user">
 				<User :user="user" :plans="plans" />

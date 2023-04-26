@@ -5,10 +5,8 @@
 
 	import { RouterView } from "vue-router";
 	import SideBar from "../components/admin/SideBar.vue";
-	import NavBar from "../components/admin/NavBar.vue";
-	import Footer from "../components/app/Footer.vue";
-
-	import "../stores/imports.js";
+	import NavBar from "../components/app/NavBar.vue";
+	import Footer from "../components/product/Footer.vue";
 
 	const env = import.meta.env;
 	const sessions = ref([]);
@@ -71,25 +69,25 @@
 
 	onBeforeMount(async () => {
 		// mountChat();
-		// await loadUser();
+		await loadUser();
 	});
 </script>
 
 <template>
-	<div class="container-scroller">
-		<SideBar></SideBar>
-		<div class="container-fluid page-body-wrapper">
-			<NavBar></NavBar>
-			<div class="main-panel mb-0 position-relative">
-				<RouterView class="vh-min pb-5 mb-5" />
-				<Footer />
+	<NavBar />
+	<main>
+		<!-- PAGE START -->
+		<div class="section section-lg pt-5 pt-md-7 bg-gray-200">
+			<div class="container">
+				<div class="row pt-5 pt-md-0">
+					<div class="col-12 col-lg-4 mb-3 mb-lg-0">
+						<SideBar />
+					</div>
+					<div class="col-12 col-lg-8">
+						<RouterView />
+					</div>
+				</div>
 			</div>
-			<!-- main-panel ends -->
 		</div>
-		<!-- page-body-wrapper ends -->
-	</div>
+	</main>
 </template>
-
-<style scoped>
-	@import url("../assets/css/imports.css");
-</style>

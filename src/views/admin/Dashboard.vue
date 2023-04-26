@@ -95,108 +95,85 @@
 			</h3>
 		</div>
 
-		<div class="row falign-items-stretched">
-			<div class="col-lg-8 stretch-card grid-margin">
-				<div class="row">
-					<div
-						class="col-xl-6 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3"
-					>
-						<div class="card bg-warning">
-							<div class="card-body px-3 py-4">
-								<div
-									class="d-flex justify-content-between align-items-start"
-								>
-									<div class="color-card">
-										<p class="mb-0 color-card-head">
-											Users
-										</p>
-										<h2 class="text-white">
-											<i class="bi bi-people-fill"></i>
-											{{ users.length }}.<span class="h5"
-												>00</span
-											>
-										</h2>
-									</div>
-									<i
-										class="card-icon-indicator mdi mdi-basket bg-inverse-icon-warning"
-									></i>
-								</div>
-							</div>
+		<div class="row align-items-stretched g-3">
+			<div
+				class="col-xl-6 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3"
+			>
+				<div class="card border-gray-300 h-100">
+					<div class="card-body d-block d-flex align-items-center">
+						<div
+							class="icon icon-shape icon-md icon-shape-primary rounded-circle me-3 mb-4 mb-md-0"
+						>
+							<i class="bi bi-people-fill"></i>
+						</div>
+						<div>
+							<span class="d-block h6 fw-bold">Users</span>
+							<h5 class="h3 fw-bold mb-1">
+								{{ users.length }}
+							</h5>
 						</div>
 					</div>
-					<div
-						class="col-xl-6 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3"
-					>
-						<div class="card bg-danger">
-							<div class="card-body px-3 py-4">
-								<div
-									class="d-flex justify-content-between align-items-start"
-								>
-									<div class="color-card text-white">
-										<p class="mb-0 color-card-heatd">
-											Subscription Plans
-										</p>
-										<h2 class="text-white">
-											<i class="bi bi-card-checklist"></i>
-											{{ plans.length }}.<span class="h5"
-												>00</span
-											>
-										</h2>
-									</div>
-									<i
-										class="card-icon-indicator mdi mdi-cube-outline bg-inverse-icon-danger"
-									></i>
-								</div>
-							</div>
+				</div>
+			</div>
+			<div
+				class="col-xl-6 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3"
+			>
+				<div class="card border-gray-300 h-100">
+					<div class="card-body d-block d-flex align-items-center">
+						<div
+							class="icon icon-shape icon-md icon-shape-primary rounded-circle me-3 mb-4 mb-md-0"
+						>
+							<i class="bi bi-card-checklist"></i>
+						</div>
+						<div>
+							<span class="d-block h6 fw-bold">
+								Subscription Plans
+							</span>
+							<h5 class="h3 fw-bold mb-1">
+								{{ plans.length }}
+							</h5>
 						</div>
 					</div>
+				</div>
+			</div>
 
-					<div class="col-xl-6 col-md-6 stretch-card pb-sm-3 pb-lg-0">
-						<div class="card bg-success">
-							<div class="card-body px-3 py-4">
-								<div
-									class="d-flex justify-content-between align-items-start"
-								>
-									<div class="color-card">
-										<p class="mb-0 color-card-head">
-											Total User Subscriptions
-										</p>
-										<h2 class="text-white">
-											{{ userSubs.length }}
-										</h2>
-									</div>
-									<i
-										class="card-icon-indicator mdi mdi-account-circle bg-inverse-icon-success"
-									></i>
-								</div>
-							</div>
+			<div class="col-xl-6 col-md-6 stretch-card pb-sm-3 pb-lg-0">
+				<div class="card border-gray-300 h-100">
+					<div class="card-body d-block d-flex align-items-center">
+						<div
+							class="icon icon-shape icon-md icon-shape-primary rounded-circle me-3 mb-4 mb-md-0"
+						>
+							<i class="bi bi-card-checklist"></i>
+						</div>
+						<div>
+							<span class="d-block h6 fw-bold">
+								Total Subscriptions
+							</span>
+							<h5 class="h3 fw-bold mb-1">
+								{{ userSubs.length }}
+							</h5>
 						</div>
 					</div>
+				</div>
+			</div>
 
-					<div
-						class="col-xl-6 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3 pb-lg-0 pb-xl-3"
-					>
-						<div class="card bg-primary">
-							<div class="card-body px-3 py-4">
-								<div
-									class="d-flex justify-content-between align-items-start"
-								>
-									<div class="color-card text-white">
-										<p class="mb-0 color-card-head">
-											Subscribed Amount
-										</p>
-										<h2 class="text-white">
-											${{ totalSubsAmount }}.<span
-												class="h5"
-												>00</span
-											>
-										</h2>
-									</div>
-									<i
-										class="card-icon-indicator mdi mdi-briefcase-outline bg-inverse-icon-primary"
-									></i>
-								</div>
-							</div>
+			<div
+				class="col-xl-6 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3 pb-lg-0 pb-xl-3"
+			>
+				<div class="card border-gray-300 h-100">
+					<div class="card-body d-block d-flex align-items-center">
+						<div
+							class="icon icon-shape icon-md icon-shape-primary rounded-circle me-3 mb-4 mb-md-0"
+						>
+							<i class="fa-solid fa-coins"></i>
+						</div>
+						<div>
+							<span class="d-block h6 fw-bold">
+								Subscribed Amount
+							</span>
+							<h5 class="h3 fw-bold mb-1">
+								${{ totalSubsAmount }}
+							</h5>
 						</div>
 					</div>
 				</div>
