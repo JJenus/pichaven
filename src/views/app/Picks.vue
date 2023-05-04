@@ -107,7 +107,7 @@
 										>
 											<div>
 												<h3 class="m-0 survey-value">
-													${{
+													{{
 														sub.subscription.amount
 													}}
 												</h3>
