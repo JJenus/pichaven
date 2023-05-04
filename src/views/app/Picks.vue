@@ -86,7 +86,7 @@
 									type="button"
 									role="button"
 									@click="openChatApp()"
-									class="btn btn-icon-text mb-3 mb-sm-0 btn-inverse-primary font-weight-normal"
+									class="btn btn-icon-text mb-3 mb-sm-0 btn-primary font-weight-normal"
 								>
 									<i
 										class="mdi mdi-email btn-icon-prepend"
