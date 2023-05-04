@@ -24,8 +24,8 @@
 			icon: "",
 		},
 		{
-			name: "Billing",
-			path: "billing",
+			name: "Plans",
+			path: "plans",
 			icon: "",
 		},
 		{
