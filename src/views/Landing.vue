@@ -429,7 +429,7 @@
 							<h2 class="h5 icon-box-title">Live chat</h2>
 							<span>Available</span>
 							<div class="text-small text-gray">
-								Mon - Fri, 8am - 4pm
+								24/7
 							</div>
 						</div>
 					</div>
