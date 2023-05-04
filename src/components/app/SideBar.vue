@@ -58,7 +58,6 @@
 	}
 
 	onMounted(() => {
-		// appUser.value.name = "Crazy"
 	});
 </script>
 
