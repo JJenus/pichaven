@@ -193,7 +193,7 @@
 						<p class="lead">It's always a joy to be one of us</p>
 					</div>
 				</div>
-				<div class="row align-items-center">
+				<div class="row align-items-center d-none">
 					<div class="col-md-6 col-lg-4 text-center">
 						<div class="card border-gray-300 mb-4">
 							<div class="card-body py-5">
