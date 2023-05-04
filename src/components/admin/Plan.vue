@@ -111,7 +111,7 @@
 				{{ plan.description }}
 			</p>
 
-			<div class="d-grid">
+			<div v-if="!admin" class="d-grid">
 				<button
 					:class="loading ? 'disabled' : ''"
 					@click="join()"
