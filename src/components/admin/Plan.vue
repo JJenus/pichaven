@@ -28,7 +28,7 @@
 		form.value.userId = user.value.id;
 		form.value.subscriptionId = props.plan.id;
 
-		// console.log(form.value);
+		// //console.log(form.value);
 
 		let config = {
 			method: "POST",
@@ -38,27 +38,26 @@
 
 		const userMessage = `Hello ${user.value.name}, please confirm your request.`;
 		const planMessage = `SUBSCRIPTION \n\nPlan: ${props.plan.title} \nAmount: $${props.plan.amount}`;
-		console.log(userMessage, planMessage);
+		//console.log(userMessage, planMessage);
 		// return;
 		axios
 			.request(config)
 			.then((res) => {
-				console.log(res);
+				//console.log(res);
 				alert.success("Success", "Chat support to activate");
 				setTimeout(() => {
 					window.tidioChatApi.open();
-					// console.log(message);
+					// //console.log(message);
 					window.tidioChatApi.messageFromOperator(userMessage);
 					window.tidioChatApi.messageFromOperator(planMessage);
 				}, 3000);
 			})
 			.catch((error) => {
-				console.log(error);
+				//console.log(error);
 			})
 			.finally(() => {
 				loading.value = false;
 			});
-		startPointer();
 	}
 
 	function delet() {
@@ -70,11 +69,11 @@
 		axios
 			.request(config)
 			.then((res) => {
-				console.log(res);
+				//console.log(res);
 				window.location.reload();
 			})
 			.catch((error) => {
-				console.log(error);
+				//console.log(error);
 			})
 			.finally(() => {});
 	}
