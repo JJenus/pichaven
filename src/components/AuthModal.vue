@@ -121,6 +121,7 @@
 				}
 			})
 			.catch(function (error) {
+				alert.error("Unable to login. Check your credentials.");
 				console.log(error);
 			})
 			.finally(() => {

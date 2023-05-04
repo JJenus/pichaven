@@ -113,9 +113,12 @@
 															? 'text-warning'
 															: 'text-success'
 													"
-													class="m-0"
+													class="m-0 mb-2"
 												>
 													{{ status(sub.status) }}
+												</p>
+												<p>
+													{{ sub.description }}
 												</p>
 											</div>
 										</div>
@@ -129,4 +132,3 @@
 		</div>
 	</div>
 </template>
-
