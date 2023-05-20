@@ -99,7 +99,7 @@
 			<h3 class="text-primary mb-4">{{ plan.title }}</h3>
 			<span class="d-block">
 				<span class="display-2 text-primary fw-bold">
-					<span class="align-top font-medium">$</span>
+					<span class="align-top font-medium">EUR</span>
 					{{ plan.amount }}
 				</span>
 				<span class="text-gray font-small">/ {{ plan.duration }}</span>

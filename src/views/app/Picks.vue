@@ -7,6 +7,10 @@
 	const subscriptions = ref([]);
 
 	const appUser = inject("user");
+	
+	function openChatApp(){
+    window.tidioChatApi.open();
+	} 
 
 	async function loadSubscriptions() {
 		let config = {
@@ -80,8 +84,9 @@
 							<div class="col-sm-5 text-md-right">
 								<a
 									type="button"
-									href="mailto:support@solidpayout.com"
-									class="btn btn-icon-text mb-3 mb-sm-0 btn-inverse-primary font-weight-normal"
+									role="button"
+									@click="openChatApp()"
+									class="btn btn-icon-text mb-3 mb-sm-0 btn-primary font-weight-normal"
 								>
 									<i
 										class="mdi mdi-email btn-icon-prepend"
@@ -102,7 +107,7 @@
 										>
 											<div>
 												<h3 class="m-0 survey-value">
-													${{
+													{{
 														sub.subscription.amount
 													}}
 												</h3>
