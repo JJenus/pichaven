@@ -30,7 +30,7 @@ const router = createRouter({
 			path: "/app",
 			name: "app",
 			component: AppView,
-			redirect: "/app/picks",
+			redirect: "/app/plans",
 			beforeEnter: (to, from, next) => {
 				if (!user.getUser()) {
 					next({ name: "landing" });
