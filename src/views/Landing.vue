@@ -56,7 +56,7 @@
 		const plugin = document.createElement("script");
 		plugin.setAttribute(
 			"src",
-			"//code.tidio.co/oje9p3zweqxnqqcawyqj6y0krt7adfbb.js"
+			`//code.tidio.co/${env.VITE_TIDIO_KEY}.js`
 		);
 		plugin.async = true;
 		document.head.appendChild(plugin);
